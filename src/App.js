@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import queryString from 'query-string';
 import './App.css';
 let defaultStyle={
   color: "black",
@@ -7,7 +7,6 @@ let defaultStyle={
 let fakeSeverData={
    user:{
      name:"Chiya",
-   
     playlists:[
      {
        name:"My fav",
@@ -22,7 +21,7 @@ let fakeSeverData={
       name:" yola weekly",
       songs:[
         
-        {name: "havana",duration:1236},
+         {name: "havana",duration:1236},
         {name:"without me",duration:12345},
         {name:"leave a light on",duration:1236}
        ]
@@ -108,10 +107,14 @@ class App extends Component {
      }
   }
   componentDidMount(){
-       setTimeout( ()=> {this.setState({
-        serverData: fakeSeverData
-     });},1000);
-  }
+     let parsed= queryString.parse(window.location.search);
+      let accessToken=parsed.access_token;
+        console.log(accessToken);
+       fetch('https://api.spotify.com/v1/me',{
+         headers:{'Authorization':'Bearer '+ accessToken}
+       }).then(response => response.json())
+          .then(data=>console.log(data))
+    }
   render() {
        let playlistsToRender=this.state.serverData.user ?this.state.serverData.user.playlists.filter((playlist)=>
        playlist.name.toLowerCase().includes(this.state.filterString.toLowerCase())
@@ -130,7 +133,7 @@ class App extends Component {
            {playlistsToRender.map((playlist,index)=>{
              return <Playlist playlist={playlist}/>
           } ) }
-           </div> :<h1 style={{defaultStyle}}>Loading...</h1>
+           </div> :<button onClick={()=>{return window.location="http://localhost:8888/login"}} >Sing in with spotify</button>
            }
       </div>
     );
