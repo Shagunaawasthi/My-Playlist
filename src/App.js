@@ -17,34 +17,7 @@ let fakeSeverData={
          {name:"leave a light on",duration:1236}
         ]
      },
-     {
-      name:" yola weekly",
-      songs:[
-        
-         {name: "havana",duration:1236},
-        {name:"without me",duration:12345},
-        {name:"leave a light on",duration:1236}
-       ]
-    }
-    ,{
-      name:"sing it",
-      songs:[
-        
-        {name: "havana",duration:1236},
-        {name:"without me",duration:12345},
-        {name:"leave a light on",duration:1236}
-       ]
-    }
-    ,
-    {
-      name:"hymn",
-      songs:[
-       
-        {name: "havana",duration:1236},
-        {name:"without me",duration:12345},
-        {name:"leave a light on",duration:1236}
-       ]
-    }
+   
     
    ]
   }
